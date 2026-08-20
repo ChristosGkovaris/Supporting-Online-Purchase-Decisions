@@ -1,0 +1,20 @@
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+
+# Archives / packaged builds
+*.zip
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Optional local notes
+notes/

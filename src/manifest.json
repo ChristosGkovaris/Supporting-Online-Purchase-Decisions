@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Supporting Online Purchase Decisions",
+  "version": "1.3.2",
+  "description": "A Chrome Extension for importing Skroutz wishlist products and supporting budget-aware purchase prioritization with deterministic weighted scoring.",
+  "permissions": [
+    "storage",
+    "unlimitedStorage",
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "https://www.skroutz.gr/*",
+    "https://skroutz.gr/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Smart Wishlist"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.skroutz.gr/*",
+        "https://skroutz.gr/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ]
+}

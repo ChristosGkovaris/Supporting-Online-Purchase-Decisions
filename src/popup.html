@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Supporting Online Purchase Decisions</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+
+<body>
+  <div id="popupMode" class="popup-container">
+    <h2>Supporting Online Purchase Decisions</h2>
+    <p>Manage your Skroutz wishlist and purchase plans.</p>
+    <button id="openAppBtn" class="action-btn">OPEN APP</button>
+  </div>
+
+  <div id="fullAppMode" class="app" style="display: none;">
+    <aside class="sidebar">
+      <div class="sticky-top">
+        <section class="actions">
+          <button id="importCurrentPageBtn">IMPORT ITEMS</button>
+          <button id="clearBtn" class="secondary">CLEAR</button>
+        </section>
+
+        <div class="budget-container">
+          <label>
+            Budget (€):
+            <input
+              type="number"
+              id="budgetInput"
+              placeholder="Enter your budget..."
+              min="0"
+              step="0.01"
+            />
+          </label>
+
+          <div class="extra-budget-container">
+            <div class="extra-budget-title">
+              Extra Budget %:
+              <span id="extraBudgetValue">0%</span>
+            </div>
+
+            <input
+              id="extraBudgetSlider"
+              type="range"
+              min="0"
+              max="4"
+              step="1"
+              value="0"
+            />
+
+            <div class="extra-budget-marks">
+              <span>0%</span>
+              <span>10%</span>
+              <span>30%</span>
+              <span>50%</span>
+              <span>100%</span>
+            </div>
+
+            <div class="effective-budget-text">
+              Effective Budget:
+              <span id="effectiveBudgetValue">Not set</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <details class="dropdown-menu">
+        <summary class="dropdown-header">
+          WEIGHTS FOR MY SMART PLAN
+        </summary>
+
+        <section class="settings dropdown-content">
+          <label>
+            Urgency Importance
+
+            <input
+              id="urgencyWeight"
+              type="range"
+              min="0"
+              max="5"
+              step="1"
+              value="4"
+            />
+
+            <span id="urgencyWeightValue">4</span>
+          </label>
+
+          <label>
+            Discount Importance
+
+            <input
+              id="discountWeight"
+              type="range"
+              min="0"
+              max="5"
+              step="1"
+              value="3"
+            />
+
+            <span id="discountWeightValue">3</span>
+          </label>
+        </section>
+      </details>
+
+      <details class="dropdown-menu">
+        <summary class="dropdown-header">
+          PRE-MADE PLANS
+        </summary>
+
+        <section class="dropdown-content">
+          <div class="plan-buttons" id="planButtons">
+            <button
+              id="budgetPlanBtn"
+              class="plan-button"
+            >
+              Budget Plan
+            </button>
+
+            <button
+              id="premiumPlanBtn"
+              class="plan-button"
+            >
+              Premium Plan
+            </button>
+
+            <button
+              id="dealPlanBtn"
+              class="plan-button"
+            >
+              Deal Hunter Plan
+            </button>
+          </div>
+
+          <div id="plansList"></div>
+        </section>
+      </details>
+
+      <details class="dropdown-menu">
+        <summary class="dropdown-header">
+          SEASONALITY
+        </summary>
+
+        <section class="dropdown-content">
+          <div class="season-buttons" id="seasonButtons">
+            <button
+              id="allSeasonsBtn"
+              class="season-button active"
+            >
+              All Seasons
+            </button>
+
+            <button
+              id="winterBtn"
+              class="season-button"
+            >
+              Winter
+            </button>
+
+            <button
+              id="springBtn"
+              class="season-button"
+            >
+              Spring
+            </button>
+
+            <button
+              id="summerBtn"
+              class="season-button"
+            >
+              Summer
+            </button>
+
+            <button
+              id="autumnBtn"
+              class="season-button"
+            >
+              Autumn
+            </button>
+          </div>
+        </section>
+      </details>
+    </aside>
+
+    <main class="content">
+      <section class="products-panel">
+        <div
+          class="view-tabs"
+          id="viewTabsContainer"
+        ></div>
+
+        <div id="status"></div>
+        <div id="productsList"></div>
+      </section>
+
+      <section class="wishlist-panel">
+        <div class="wishlist-header-row">
+          <div>
+            <h2 id="wishlistTitle" class="wishlist-title">
+              MY SMART PLAN
+            </h2>
+
+            <p class="wishlist-subtitle">
+              Optimized using your 1–5 ratings, budget rules, and current weights.
+            </p>
+          </div>
+
+          <button
+            id="suggestProductsBtn"
+            class="suggest-products-button"
+            type="button"
+          >
+            SUGGEST PRODUCTS
+          </button>
+        </div>
+
+        <div id="smartWishlistList"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
