@@ -228,6 +228,8 @@ See:
 - [`tests/manual-test-plan.md`](tests/manual-test-plan.md)
 - [`tests/test-results.md`](tests/test-results.md)
 
+![Tests](https://github.com/ChristosGkovaris/Supporting-Online-Purchase-Decisions/actions/workflows/tests.yml/badge.svg)
+
 ## Project Structure
 
 ```text
