@@ -8,15 +8,15 @@ The implemented system is a Chrome Extension that operates alongside the Skroutz
 
 ## Problem
 
-Online wishlists are effective for storing products but provide limited assistance when users must decide:
+Online wishlists are effective for storing products but provide limited support when users must decide:
 
 - what should be purchased first;
 - what fits within a specific budget;
-- which items represent stronger value;
-- which products are temporarily irrelevant;
+- which items offer stronger value;
+- which products are temporarily less relevant;
 - how multiple products can be combined into a realistic purchase plan.
 
-A large wishlist therefore creates a prioritization problem rather than solving one.
+As the number of saved products increases, the wishlist itself can become a prioritization problem.
 
 ## Proposed Solution
 
@@ -40,7 +40,7 @@ The user can:
 
 The system deliberately avoids artificial intelligence and machine learning.
 
-Instead, it uses explicit rule-based mechanisms such as:
+Instead, it uses explicit rule-based mechanisms, including:
 
 - weighted scoring;
 - deterministic discount detection;
@@ -50,7 +50,7 @@ Instead, it uses explicit rule-based mechanisms such as:
 - keyword-based seasonality classification;
 - constrained purchase-plan optimization.
 
-This makes the decision process transparent and reproducible.
+This approach keeps the decision process transparent, reproducible, and directly interpretable by the user.
 
 ## Implementation
 
@@ -62,13 +62,13 @@ The application is implemented as a Manifest V3 Chrome Extension using:
 - Chrome Storage API;
 - Chrome Tabs API;
 - Chrome Scripting API;
-- DOM extraction.
+- DOM-based product extraction.
 
-Product information is extracted from a currently open Skroutz Favorites page and processed locally by the extension.
+Product information is extracted from an open Skroutz Favorites page and processed locally by the extension.
 
 ## Decision-Support Output
 
-The application presents:
+The application provides:
 
 - Priority Score;
 - Budget Fit;
@@ -85,24 +85,34 @@ The application presents:
 
 ## Validation
 
-The implementation was manually validated through functional and edge-case scenarios.
+The implementation was validated through both automated testing and manual regression testing.
 
-The validation covered areas including:
+The automated test suite covers deterministic application logic, including:
 
-- correct wishlist import;
-- rejection of unrelated DOM elements;
-- out-of-stock detection;
+- availability detection;
+- price parsing;
 - discount calculation;
-- budget boundary handling;
-- zero and negative budget behavior;
-- Extra Budget calculations;
-- optimizer budget safety;
-- urgency sensitivity;
-- weight sensitivity;
-- persistence after reload.
+- budget handling;
+- scoring behavior;
+- product grouping;
+- seasonality;
+- Purchase Readiness;
+- purchase-plan optimization;
+- persistence and product re-import behavior.
+
+Manual validation was used for browser-level and live Skroutz integration scenarios, including:
+
+- wishlist product import;
+- rejection of unrelated DOM elements;
+- live product-count verification;
+- out-of-stock classification;
+- budget-boundary behavior;
+- Extra Budget behavior;
+- urgency and weight sensitivity;
+- state persistence after reload.
 
 The associated validation documentation is available in the repository's `tests/` directory.
 
 ## Result
 
-The resulting application demonstrates how deterministic decision-support methods can extend a traditional online wishlist into an interactive purchase-prioritization system while retaining explainability and user control.
+The resulting application demonstrates how deterministic decision-support methods can extend a conventional online wishlist into an interactive purchase-prioritization system while preserving explainability, budget awareness, and user control.
