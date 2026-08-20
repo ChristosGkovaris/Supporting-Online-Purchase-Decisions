@@ -225,8 +225,7 @@ The application has been manually validated against functional and edge-case sce
 
 See:
 
-- [`tests/manual-test-plan.md`](tests/manual-test-plan.md)
-- [`tests/test-results.md`](tests/test-results.md)
+- [`tests/README.md`](tests/README.md)
 
 ![Tests](https://github.com/ChristosGkovaris/Supporting-Online-Purchase-Decisions/actions/workflows/tests.yml/badge.svg)
 
