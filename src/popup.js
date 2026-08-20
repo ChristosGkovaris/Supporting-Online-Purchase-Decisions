@@ -1383,20 +1383,6 @@ function getEffectiveBudget() {
         : fromCents(cents);
 }
 
-function updateEffectiveBudgetLabel() {
-    const effectiveBudget =
-        getEffectiveBudget();
-
-    elements
-        .effectiveBudgetValue
-        .textContent =
-        effectiveBudget === null
-            ? "Not set"
-            : `${formatMoney(
-                effectiveBudget
-            )} €`;
-}
-
 function updateExtraBudgetLabel() {
     elements
         .extraBudgetValue
@@ -1411,13 +1397,11 @@ function updateEffectiveBudgetLabel() {
     elements
         .effectiveBudgetValue
         .textContent =
-        Number.isFinite(
-            effectiveBudget
-        )
-            ? formatMoney(
+        effectiveBudget === null
+            ? "Not set"
+            : `${formatMoney(
                 effectiveBudget
-            )
-            : "-";
+            )} €`;
 }
 
 async function loadExtraBudgetPercent() {
