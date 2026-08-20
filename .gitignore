@@ -1,13 +1,14 @@
-# OS files
+# Python
+__pycache__/
+*.py[cod]
+
+# Operating systems
 .DS_Store
 Thumbs.db
 
-# Editors / IDEs
+# Editors
 .vscode/
 .idea/
-
-# Archives / packaged builds
-*.zip
 
 # Logs
 *.log
@@ -15,6 +16,3 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
-
-# Optional local notes
-notes/
