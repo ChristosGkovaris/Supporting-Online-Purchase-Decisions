@@ -1,6 +1,6 @@
 # TESTING
 
-The project uses a combination of **automated testing** and **manual regression testing** to validate the Chrome Extension's core decision-support logic, scraping rules, budget handling, and browser-facing behavior.
+The project uses **automated testing** to validate the Chrome Extension's core decision-support logic, scraping rules, budget handling, and browser-facing behavior.
 
 ## Automated Test Suite
 
@@ -25,7 +25,7 @@ node --version
 From the repository root:
 
 ```powershell
-python run_tests.py
+python scripts/run_tests.py
 ```
 
 The runner automatically discovers all files matching:
@@ -39,8 +39,8 @@ A successful run produces a summary similar to:
 ```text
 Automated Test Suite
 ──────────────────────────────
-Tests:    40
-Passed:   40
+Tests:    45
+Passed:   45
 Duration: X.XXs
 Status:   ALL TESTS PASSED
 ```
@@ -78,53 +78,6 @@ Additional static checks validate repository-level implementation constraints, i
 
 These checks complement the functional suite; they are not a replacement for linting or security analysis.
 
-## Manual Regression Testing
-
-Automated tests cannot fully reproduce interactions with an authenticated, live Skroutz Favorites page. Browser-level behavior is therefore also validated manually.
-
-### Test Environment
-
-- **Browser:** Google Chrome
-- **Extension model:** Manifest V3
-- **Installation:** Unpacked extension
-- **Data source:** Skroutz Favorites
-- **Method:** Functional, boundary, and regression testing
-
-### Manual Test Cases
-
-| ID | Area | Test | Expected Result |
-|---|---|---|---|
-| TC-01 | Import | Import products from an open Skroutz Favorites page | All valid wishlist products are imported |
-| TC-02 | Availability | Import an explicitly unavailable product | Product appears in `OUT OF STOCK` |
-| TC-03 | Availability | Import a product without an explicit out-of-stock signal | Missing price alone does not imply out-of-stock status |
-| TC-04 | Scraper | Compare imported count with the actual Favorites count | Non-product DOM elements are rejected |
-| TC-05 | Price | Compare imported prices with Skroutz | Product prices are extracted correctly |
-| TC-06 | Deduplication | Inspect the imported product collection | No unintended duplicate products are created |
-| TC-07 | Discount | Import a product containing old price, current price, or coupon data | Correct discount percentage and rating are derived |
-| TC-08 | Weights | Set both configurable scoring weights to zero | Application remains stable and uses the defined fallback |
-| TC-09 | Budget | Set Budget to `0` | Effective Budget is zero and positive-price products are out of budget |
-| TC-10 | Budget | Enter a negative budget | Input is normalized rather than used as a negative budget |
-| TC-11 | Budget | Leave Budget empty | Budget is treated as unset |
-| TC-12 | Budget | Enter a very large budget | Valid products are not incorrectly classified as out of budget |
-| TC-13 | Extra Budget | Set Budget to `300 €` and Extra Budget to `100%` | Effective Budget is `600 €` |
-| TC-14 | Boundary | Set Effective Budget equal to the product price | Product remains within budget |
-| TC-15 | Boundary | Set Effective Budget `€0.01` below the product price | Product is classified as out of budget |
-| TC-16 | Budget validation | Re-test zero, negative, and empty budget states | All states behave consistently |
-| TC-17 | Optimizer | Provide products with different utility levels | Low-value products are not added merely to consume remaining budget |
-| TC-18 | Optimizer | Reduce budget below expensive tracked products | Generated plan never exceeds Effective Budget |
-| TC-19 | Extra Budget | Set Budget to `20 €` and Extra Budget to `100%` | Effective Budget becomes `40 €` and affordability uses that value |
-| TC-20 | Urgency | Increase a product's urgency from `3/5` to `5/5` | Priority and readiness respond accordingly |
-| TC-21 | Weighting | Increase Urgency Importance while keeping other inputs fixed | Priority Score responds to the weight change |
-| TC-22 | Persistence | Reload the extension application | Stored products, ratings, weights, budget, and list state persist |
-
-### Manual Test Result
-
-```text
-22 / 22 test scenarios passed
-```
-
-All identified defects in the tested scenarios were corrected and re-tested.
-
 ## Regression Fixes Validated
 
 The test process identified and validated fixes for several implementation issues:
@@ -147,7 +100,3 @@ In particular, the exact number of products available in a private Skroutz Favor
 - the authenticated user's current wishlist;
 - the live Skroutz DOM;
 - changes to the external website.
-
-For this reason, live wishlist counts and end-to-end import behavior remain manual regression checks.
-
-Changes to the Skroutz DOM should be followed by re-running both the automated suite and the relevant manual scraper tests.
