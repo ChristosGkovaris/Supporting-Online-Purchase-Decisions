@@ -6,7 +6,8 @@ import unittest
 from pathlib import Path
 
 
-PROJECT_ROOT = Path(__file__).resolve().parent
+SCRIPT_DIR = Path(__file__).resolve().parent
+PROJECT_ROOT = SCRIPT_DIR.parent
 TESTS_DIRECTORY = PROJECT_ROOT / "tests"
 TEST_PATTERN = "test_*.py"
 
