@@ -136,19 +136,38 @@ function findBestPriceText(card) {
     "[class*='Price']"
   ];
 
+  const candidates = [];
+
   for (const selector of selectors) {
     const elements = Array.from(card.querySelectorAll(selector));
 
-    const matchingElement = elements.find((element) =>
-      cleanText(element.textContent).includes("€")
-    );
+    elements.forEach((element) => {
+      const text = cleanText(element.textContent);
 
-    if (matchingElement) {
-      return cleanText(matchingElement.textContent);
-    }
+      if (!text.includes("€")) {
+        return;
+      }
+
+      const price = parseGreekPrice(text);
+
+      if (Number.isFinite(price) && price > 0) {
+        candidates.push({
+          text,
+          price
+        });
+      }
+    });
   }
 
-  return "";
+  if (candidates.length === 0) {
+    return "";
+  }
+
+  candidates.sort(
+    (a, b) => a.price - b.price
+  );
+
+  return candidates[0].text;
 }
 
 function findBestLink(root) {
@@ -365,9 +384,14 @@ function roundMoney(value) {
 }
 
 function createId(title, url) {
-  return btoa(
-    unescape(
-      encodeURIComponent(`${title}-${url}`)
-    )
-  ).slice(0, 24);
+  const value = `${title}-${url}`;
+
+  let hash = 2166136261;
+
+  for (let i = 0; i < value.length; i++) {
+    hash ^= value.charCodeAt(i);
+    hash = Math.imul(hash, 16777619);
+  }
+
+  return `product-${(hash >>> 0).toString(16)}`;
 }

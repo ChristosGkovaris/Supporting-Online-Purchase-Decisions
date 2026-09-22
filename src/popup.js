@@ -772,21 +772,12 @@ async function importFromSkroutzTab() {
 
     const skroutzTab =
         skroutzTabs.find(
-            (tab) =>
-                isLikelyFavoritesTab(tab)
-        ) ||
-        skroutzTabs.find(
-            (tab) =>
-                tab.active
-        ) ||
-        skroutzTabs[0];
+            (tab) => isLikelyFavoritesTab(tab)
+        );
 
-    if (
-        !skroutzTab ||
-        !skroutzTab.id
-    ) {
+    if (!skroutzTab || !skroutzTab.id) {
         elements.status.textContent =
-            "No Skroutz tab found. Open your Skroutz Favorites page and try again.";
+            "No Skroutz Favorites tab found. Open your Skroutz Favorites page and try again.";
 
         return;
     }

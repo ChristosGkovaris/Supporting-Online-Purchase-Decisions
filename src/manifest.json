@@ -5,7 +5,6 @@
   "description": "A Chrome Extension for importing Skroutz wishlist products and supporting budget-aware purchase prioritization with deterministic weighted scoring.",
   "permissions": [
     "storage",
-    "unlimitedStorage",
     "tabs",
     "scripting"
   ],
