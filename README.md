@@ -254,8 +254,7 @@ Supporting-Online-Purchase-Decisions/
 │       └── project-summary.md
 │
 ├── tests/
-│   ├── manual-test-plan.md
-│   └── test-results.md
+│   └── README.md
 │
 ├── .gitattributes
 ├── .gitignore
