@@ -3,6 +3,7 @@ console.log("Smart Wishlist content script loaded on Skroutz Favorites.");
 const DEFAULT_URGENCY_SCORE = 3;
 const RATING_SCALE = 5;
 
+// Handles product extraction requests from the extension UI.
 chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.type === "EXTRACT_SKROUTZ_PRODUCTS") {
     const products = extractSkroutzProducts();
@@ -103,6 +104,7 @@ function detectAvailability(rawText, parsedPrice = 0) {
     "unavailable"
   ];
 
+  // Explicit unavailability indicators take precedence over price-based inference.
   if (unavailableSignals.some((signal) => text.includes(signal))) {
     return "out-of-stock";
   }
@@ -211,12 +213,11 @@ function parseGreekPrice(text) {
     return 0;
   }
 
+  // Exclude instalments, shipping and other auxiliary amounts.
   const primaryCandidates = candidates.filter(
     (candidate) => !isAuxiliaryPriceCandidate(source, candidate)
   );
 
-  // Never treat instalments, shipping or other auxiliary amounts as the
-  // product's purchase price. If no primary price exists, return 0/unknown.
   const usableCandidates = primaryCandidates;
 
   const normalizedPrices = usableCandidates
@@ -279,6 +280,7 @@ function normalizePriceString(priceText) {
   const lastComma = value.lastIndexOf(",");
   const lastDot = value.lastIndexOf(".");
 
+  // Resolve decimal and thousands separators across Greek and international formats.
   if (lastComma !== -1 && lastDot !== -1) {
     if (lastComma > lastDot) {
       value = value
@@ -356,6 +358,7 @@ function removeDuplicateElements(elements) {
   elements.forEach((element) => {
     const link = findBestLink(element);
 
+    // Ignore query parameters when identifying duplicate product links.
     const key = link
       ? link.href.split("?")[0]
       : cleanText(element.innerText);
