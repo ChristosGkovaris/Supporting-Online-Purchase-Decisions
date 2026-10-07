@@ -13,7 +13,7 @@
     "https://skroutz.gr/*"
   ],
   "action": {
-    "default_popup": "popup.html",
+    "default_popup": "dashboard.html",
     "default_title": "Smart Wishlist"
   },
   "content_scripts": [
@@ -23,7 +23,7 @@
         "https://skroutz.gr/*"
       ],
       "js": [
-        "content.js"
+        "wishlistScraper.js"
       ]
     }
   ]

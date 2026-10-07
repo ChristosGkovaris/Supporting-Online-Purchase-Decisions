@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             });
 
             chrome.tabs.create({
-                url: chrome.runtime.getURL("popup.html?tab=true"),
+                url: chrome.runtime.getURL("dashboard.html?tab=true"),
                 index: currentTab
                     ? currentTab.index + 1
                     : undefined
@@ -798,7 +798,7 @@ async function importFromSkroutzTab() {
                 },
 
                 files: [
-                    "content.js"
+                    "wishlistScraper.js"
                 ]
             });
 
