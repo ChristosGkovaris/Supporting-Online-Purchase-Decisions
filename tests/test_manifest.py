@@ -12,7 +12,7 @@ class ManifestTests(unittest.TestCase):
 
     def test_01_required_source_files_exist(self):
         src = self.root / "src"
-        expected = {"manifest.json", "content.js", "popup.js", "popup.html", "popup.css"}
+        expected = {"manifest.json", "wishlistScraper.js", "decisionLogic.js", "dashboard.html", "dashboard.css"}
         missing = [name for name in expected if not (src / name).exists()]
         self.assertEqual(missing, [])
 

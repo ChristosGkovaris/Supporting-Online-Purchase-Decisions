@@ -132,8 +132,8 @@ def _run(source_file: str, test_code: str):
 
 
 def run_popup(test_code: str):
-    return _run("popup.js", test_code)
+    return _run("decisionLogic.js", test_code)
 
 
 def run_content(test_code: str):
-    return _run("content.js", test_code)
+    return _run("wishlistScraper.js", test_code)

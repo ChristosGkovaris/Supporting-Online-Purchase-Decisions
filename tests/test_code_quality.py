@@ -14,13 +14,13 @@ class CodeQualityTests(unittest.TestCase):
         cls.popup_path = (
             cls.root /
             "src" /
-            "popup.js"
+            "decisionLogic.js"
         )
 
         cls.content_path = (
             cls.root /
             "src" /
-            "content.js"
+            "wishlistScraper.js"
         )
 
         cls.popup_source = (
@@ -56,7 +56,7 @@ class CodeQualityTests(unittest.TestCase):
             [],
             msg=(
                 "Duplicate function declarations "
-                f"found in popup.js: {duplicates}"
+                f"found in decisionLogic.js: {duplicates}"
             )
         )
 
@@ -118,10 +118,10 @@ class CodeQualityTests(unittest.TestCase):
     def test_45_manifest_and_source_files_are_non_empty(self):
         required = [
             "manifest.json",
-            "content.js",
-            "popup.js",
-            "popup.html",
-            "popup.css"
+            "wishlistScraper.js",
+            "decisionLogic.js",
+            "dashboard.html",
+            "dashboard.css"
         ]
 
         for filename in required:
