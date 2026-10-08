@@ -473,4 +473,8 @@ Citation metadata is provided in [`CITATION.cff`](CITATION.cff).
 
 ## License
 
-This project is licensed under the MIT License. See [`LICENSE`](LICENSE) for details.
+Copyright © 2026 Christos Gkovaris. All rights reserved.
+
+This project is proprietary software developed as part of an academic thesis. The source code is publicly available for inspection, but copying, modification, distribution, sublicensing, or reuse requires prior written permission from the author.
+
+See [`LICENSE`](LICENSE) for details.

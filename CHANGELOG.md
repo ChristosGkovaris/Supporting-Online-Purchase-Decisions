@@ -1,3 +1,4 @@
+
 # Changelog
 
 All notable changes to this project are documented in this file.
@@ -30,7 +31,8 @@ The project follows Semantic Versioning.
 
 ### Validated
 
-- 42-item Skroutz wishlist import
+- Skroutz wishlist import using a 42-product test case
+- Extraction without a hard-coded product-count limit
 - Out-of-stock classification
 - Discount detection
 - Budget boundaries
@@ -39,3 +41,5 @@ The project follows Semantic Versioning.
 - Urgency sensitivity
 - Weight sensitivity
 - State persistence
+
+The 42-product import was a representative validation case, not a restriction on the number of supported products. The scraper does not impose a fixed product-count limit and processes valid product cards found in the loaded Skroutz Favorites page.
