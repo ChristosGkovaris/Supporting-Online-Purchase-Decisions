@@ -379,7 +379,12 @@ Supporting-Online-Purchase-Decisions/
 │   │   ├── 02-product-scoring.png
 │   │   ├── 03-smart-plan.png
 │   │   ├── 04-budget-analysis.png
-│   │   └── 05-product-suggestion.png
+│   │   ├── 05-product-suggestion.png
+│   │   ├── 06-seasonality-filtering.png
+│   │   ├── 07-pre-made-purchase-plans.png
+│   │   ├── 08-optimized-purchase-plan.png
+│   │   ├── 09-out-of-stock-classification.png
+│   │   └── 10-original-skroutz-favorites-page.png
 │   │
 │   └── thesis-manuscript/
 │       ├── project-summary.md
@@ -415,7 +420,7 @@ Supporting-Online-Purchase-Decisions/
 
 The `src/` directory contains the installable Chrome Extension.
 
-The `docs/` directory contains architecture documentation, screenshots, the thesis manuscript, and presentation material.
+The `docs/` directory contains architecture documentation, application screenshots, the thesis manuscript, and the presentation.
 
 The `scripts/` and `tests/` directories contain the automated testing infrastructure.
 
